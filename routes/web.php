@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ServiceController;
+use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,5 @@ Route::get('/service', [ServiceController::class, 'index'])->name('service.index
 Route::get('/service/create',[ServiceController::class,'create'])->name('service.create');
 Route::get('/service/{post}/update',[ServiceController::class,'update'])->name('service.update');
 Route::get('/service/{post}',[ServiceController::class,'show'])->name('service.show');
-
+Route::delete('/service/{post}',[ServiceController::class,'delete'])->name('service.destroy');
+Route::post('/service',[ServiceController::class,'store'])->name('service.store');
