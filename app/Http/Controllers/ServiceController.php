@@ -12,31 +12,51 @@ class ServiceController extends Controller
     {
         $servicsFromDB = Service::all();
 
-        return view('service',['service'=>$servicsFromDB]);
+        return view('service', ['service' => $servicsFromDB]);
     }
 
     public function create()
     {
-        $modifyServicsFromDB= categorie::all();
+        $modifyServicsFromDB = categorie::all();
 
-        return view('create',['post'=>$modifyServicsFromDB]);
+        return view('create', ['post' => $modifyServicsFromDB]);
     }
 
     public function show($id)
     {
         $singelServicsFromDB = Service::findOrFail($id);
 
-        return view('show', ['post'=>$singelServicsFromDB]);
+        return view('show', ['post' => $singelServicsFromDB]);
     }
 
 
     public function update($id)
     {
-        $modifyServicsFromDB= Service::findOrFail($id);
+        $modifyCategoryFromDB = categorie::all();
+        $modifyServicsFromDB = Service::findOrFail($id);
 
-        return view('modify',['post'=>$modifyServicsFromDB]);
+        return  view('modify', ['post' => $modifyServicsFromDB, 'categories' => $modifyCategoryFromDB]);
     }
 
+
+    public function modify($id)
+    {
+
+        $img = request()->img;
+        $title = request()->title;
+        $description = request()->description;
+        $category = request()->category;
+
+        $modifyServicsFromDB = Service::findOrFail($id);
+        $modifyServicsFromDB->update([
+            'img' => $img,
+            'title' => $title,
+            'description' => $description,
+            'category_id' => $category
+        ]);
+
+        return to_route('service.show',$id);
+    }
 
     public function delete()
     {
@@ -44,7 +64,8 @@ class ServiceController extends Controller
     }
 
 
-    public function store(){
+    public function store()
+    {
 
         $img = request()->img;
         $title = request()->title;
