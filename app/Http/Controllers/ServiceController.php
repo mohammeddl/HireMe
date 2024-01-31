@@ -58,9 +58,11 @@ class ServiceController extends Controller
         return to_route('service.show',$id);
     }
 
-    public function delete()
+    public function delete($id)
     {
-        return 'is destroy';
+        $ServicsFromDB = Service::findOrFail($id);
+        $ServicsFromDB->delete();
+        return to_route('service.index');
     }
 
 
@@ -78,7 +80,6 @@ class ServiceController extends Controller
         $service->img = $img;
         $service->title = $title;
         $service->description = $description;
-        $service->updated_at = $date;
         $service->date = $date;
         $service->category_id = $category;
         $service->save();
