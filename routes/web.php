@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\PostController;
+
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\userController;
-use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +26,7 @@ Route::get('/service/{post}',[ServiceController::class,'show'])->name('service.s
 Route::post('/service',[ServiceController::class,'store'])->name('service.store');
 Route::delete('/service/{post}',[ServiceController::class,'delete'])->name('service.destroy');
 Route::put('/service/{post}',[ServiceController::class,'modify'])->name('service.modify');
+
 
 Route::get('/register',[userController::class,'create'])->name('register.create');
 Route::post('/register',[userController::class,'store'])->name('register.store');

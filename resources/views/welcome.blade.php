@@ -27,10 +27,10 @@
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             @foreach($lastServices as $service)
             <div>
-                <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+                <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ asset('images/' . $service->img) }}" alt="">
 
                 <div class="mt-8">
-                    
+
                     <span class="text-blue-500 uppercase">{{$service->categorie->categoryName}}</span>
 
                     <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
@@ -50,7 +50,7 @@
                             <p class="text-sm text-gray-500 dark:text-gray-400">{{$service->date}}</p>
                         </div>
 
-                        <a href="#" class="inline-block text-blue-500 underline hover:text-blue-400">Contact Us</a>
+                        <a href="{{route('service.show',$service->id)}}" class="inline-block text-blue-500 underline hover:text-blue-400">Contact Us</a>
                     </div>
 
                 </div>
