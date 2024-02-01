@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->text('description');
             $table->string('title');
-            $table->string('img');
+            $table->string('img')->default('default_image.jpg');
             $table->date('date');
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
         });
     }
 

@@ -13,13 +13,58 @@
     </div>
 </section>
 
+{{-- service card --}}
+<section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-10 mx-auto">
+        <div class="flex items-center justify-between">
+            <h2 class="w-full m-0 font-sans text-4xl font-black leading-loose tracking-wide text-center text-gray-700 border-0 border-gray-200 sm:text-5xl">
+                Last Services
+            </h2>
+        </div>
+
+        <hr class="my-8 border-gray-200 dark:border-gray-700">
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+            @foreach($lastServices as $service)
+            <div>
+                <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+
+                <div class="mt-8">
+                    
+                    <span class="text-blue-500 uppercase">{{$service->categorie->categoryName}}</span>
+
+                    <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+                        {{$service->titel}}
+                    </h1>
+
+                    <p class="mt-2 text-gray-500 dark:text-gray-400">
+                        {{$service->description}}
+                    </p>
+
+                    <div class="flex items-center justify-between mt-4">
+                        <div>
+                            <a href="#" class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
+                                John snow
+                            </a>
+
+                            <p class="text-sm text-gray-500 dark:text-gray-400">{{$service->date}}</p>
+                        </div>
+
+                        <a href="#" class="inline-block text-blue-500 underline hover:text-blue-400">Contact Us</a>
+                    </div>
+
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 {{-- card --}}
-<section class="box-border relative w-full font-sans leading-6 text-gray-700 bg-white border-0 border-gray-200 border-solid">
-    <div class="box-border flex flex-col items-center px-8 py-20 mx-auto leading-6 border-solid max-w-7xl xl:px-16 md:items-stretch md:justify-center md:py-24">
+<section class=" relative w-full font-sans leading-6 text-gray-700 bg-white border-0 border-gray-200 border-solid">
+    <div class="box-border flex flex-col items-center px-8  mx-auto leading-6 border-solid max-w-7xl xl:px-16 md:items-stretch md:justify-center md:py-24">
         <div class="relative pb-10">
-            <h5 class="w-full mx-0 mt-0 mb-4 font-sans font-bold text-center text-purple-700 border-0 border-gray-200">
-                Features
-            </h5>
+
             <h2 class="w-full m-0 font-sans text-4xl font-black leading-loose tracking-wide text-center text-gray-700 border-0 border-gray-200 sm:text-5xl">
                 Amazing Features
             </h2>

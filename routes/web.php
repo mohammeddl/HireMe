@@ -17,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test', function () {
-    return view('welcome');
-});
+Route::get('/index', [ServiceController::class,'home'])->name('home');
+// ->middleware('auth')
 
 Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
 Route::get('/service/create',[ServiceController::class,'create'])->name('service.create');
@@ -33,5 +32,6 @@ Route::get('/register',[userController::class,'create'])->name('register.create'
 Route::post('/register',[userController::class,'store'])->name('register.store');
 Route::get('/login',[userController::class,'index'])->name('login.create');
 Route::post('/login',[userController::class,'login'])->name('login.store');
+Route::get('/logout', [userController::class, 'logout'])->name('logout');
 
 

@@ -52,8 +52,14 @@ class userController extends Controller
 
             return to_route('service.index');
         } else {
-            
+
             return to_route('login.create');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return to_route('login.create');
     }
 }

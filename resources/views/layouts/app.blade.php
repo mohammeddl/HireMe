@@ -25,12 +25,18 @@
                     </a>
                 </div>
                 <div class="relative flex items-center px-4 mt-2 font-medium leading-10 md:flex-grow-0 md:flex-shrink-0 md:mt-0 md:text-right lg:flex-grow-0 lg:flex-shrink-0">
+                    @guest
                     <a href="{{route('login.create')}}" class="box-border inline-block h-10 px-4 mr-3 text-right text-gray-200 no-underline bg-gray-800 rounded-lg cursor-pointer md:mr-0 md:bg-transparent hover:text-white focus:no-underline">
                         Login
                     </a>
                     <a href="{{route('register.create')}}" class="box-border inline-flex items-center h-10 px-4 text-base text-center text-gray-100 no-underline align-middle bg-gray-800 rounded-lg cursor-pointer select-none hover:bg-gray-50 hover:text-gray-900 focus:shadow-xs focus:no-underline">
                         Sign Up
                     </a>
+                    @else
+                    <a href="{{route('logout')}}" class="box-border inline-block h-10 px-4 mr-3 text-right text-gray-200 no-underline bg-gray-800 rounded-lg cursor-pointer md:mr-0 md:bg-transparent hover:text-white focus:no-underline">
+                        Logout
+                    </a>
+                    @endguest
                 </div>
             </div>
         </div>

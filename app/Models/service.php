@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\categorie;
 
 class Service extends Model
 {
@@ -16,4 +17,8 @@ class Service extends Model
         'date',
         'category_id',
     ];
+
+    public function categorie(){
+        return $this->belongsTo(categorie::class,'category_id');
+    }
 }

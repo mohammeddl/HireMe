@@ -8,6 +8,15 @@ use App\Models\categorie;
 
 class ServiceController extends Controller
 {
+
+
+    public function home()
+    {
+        $servicsFromDB = Service::latest('date')->limit(3)->get();
+        return view('welcome',['lastServices'=>$servicsFromDB]);
+    }
+
+
     public function index()
     {
         $servicsFromDB = Service::all();
@@ -55,7 +64,7 @@ class ServiceController extends Controller
             'category_id' => $category
         ]);
 
-        return to_route('service.show',$id);
+        return to_route('service.show', $id);
     }
 
     public function delete($id)
