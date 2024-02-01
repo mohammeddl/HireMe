@@ -20,9 +20,15 @@
                     <a href="{{route('home')}}" class="box-border inline-block mr-4 text-center text-gray-300 no-underline bg-transparent cursor-pointer hover:text-gray-200 focus:no-underline">
                         Home
                     </a>
+                    @guest
                     <a href="#_" class="box-border inline-block mr-4 text-center text-gray-300 no-underline bg-transparent cursor-pointer hover:text-gray-200 focus:no-underline">
                         About
                     </a>
+                    @else
+                    <a href="{{route('service.index')}}" class="box-border inline-block mr-4 text-center text-gray-300 no-underline bg-transparent cursor-pointer hover:text-gray-200 focus:no-underline">
+                        Dashboard
+                    </a>
+                    @endguest
                 </div>
                 <div class="relative flex items-center px-4 mt-2 font-medium leading-10 md:flex-grow-0 md:flex-shrink-0 md:mt-0 md:text-right lg:flex-grow-0 lg:flex-shrink-0">
                     @guest

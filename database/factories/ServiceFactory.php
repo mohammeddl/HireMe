@@ -24,8 +24,7 @@ class ServiceFactory extends Factory
             'description' => $this->faker->sentence,
             'title' => $this->faker->word,
             'date' => $this->faker->date,
-            // 'category_id' should be assigned based on existing categories, adjust as needed
-            'category_id' => random_int(1, 4), // Adjust the range based on your categories
+            'category_id' => random_int(1, 4),
         ];
     }
 }

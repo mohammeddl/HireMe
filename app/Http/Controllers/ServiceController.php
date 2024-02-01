@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\categorie;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -19,9 +20,12 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $servicsFromDB = Service::all();
+        $userId = Auth::id();
 
-        return view('service', ['service' => $servicsFromDB]);
+
+        $servicesFromDB = Service::where('user_id', $userId)->get();
+
+        return view('service', ['service' => $servicesFromDB]);
     }
 
     public function create()
@@ -64,14 +68,14 @@ class ServiceController extends Controller
             'category_id' => $category
         ]);
 
-        return to_route('service.show', $id)->with('success','your service is updated');
+        return to_route('service.show', $id)->with('success', 'your service is updated');
     }
 
     public function delete($id)
     {
         $ServicsFromDB = Service::findOrFail($id);
         $ServicsFromDB->delete();
-        return to_route('service.index')->with('success','your service is destroy');
+        return to_route('service.index')->with('success', 'your service is destroy');
     }
 
 
@@ -84,15 +88,19 @@ class ServiceController extends Controller
             'description' => 'required',
             'date' => 'required',
             'category' => 'required',
+            'price' => 'required',
         ]);
 
         if ($request->hasFile('img')) {
             $image = $request->file('img');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName); 
+            $image->move(public_path('images'), $imageName);
         } else {
             $imageName = null;
         }
+
+        $userId = Auth::id();
+
 
         $service = new Service;
         $service->img =  $imageName;
@@ -100,8 +108,10 @@ class ServiceController extends Controller
         $service->description = $request->input('description');
         $service->date = $request->input('date');
         $service->category_id = $request->input('category');
+        $service->price = $request->input('price');
+        $service->user_id = $userId;
         $service->save();
 
-        return to_route('service.index')->with('success','your service is created');
+        return to_route('service.index')->with('success', 'your service is created');
     }
 }

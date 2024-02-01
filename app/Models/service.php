@@ -16,6 +16,8 @@ class Service extends Model
         'img',
         'date',
         'category_id',
+        'user_id',
+        'price',
     ];
 
     public function categorie(){

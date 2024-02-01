@@ -19,13 +19,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/index', [ServiceController::class,'home'])->name('home');
 // ->middleware('auth')
 
-Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
-Route::get('/service/create',[ServiceController::class,'create'])->name('service.create');
-Route::get('/service/{post}/update',[ServiceController::class,'update'])->name('service.update');
 Route::get('/service/{post}',[ServiceController::class,'show'])->name('service.show');
-Route::post('/service',[ServiceController::class,'store'])->name('service.store');
-Route::delete('/service/{post}',[ServiceController::class,'delete'])->name('service.destroy');
-Route::put('/service/{post}',[ServiceController::class,'modify'])->name('service.modify');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
+    Route::get('/service/create',[ServiceController::class,'create'])->name('service.create');
+    Route::get('/service/{post}/update',[ServiceController::class,'update'])->name('service.update');
+    Route::post('/service',[ServiceController::class,'store'])->name('service.store');
+    Route::delete('/service/{post}',[ServiceController::class,'delete'])->name('service.destroy');
+    Route::put('/service/{post}',[ServiceController::class,'modify'])->name('service.modify');
+
+});
+
+
+    Route::get('/index', [ServiceController::class,'home'])->name('home')->middleware('guest');
+
 
 
 Route::get('/register',[userController::class,'create'])->name('register.create');

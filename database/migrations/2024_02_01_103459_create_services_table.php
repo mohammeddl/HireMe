@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('img')->default('default_image.jpg');
             $table->date('date');
+            $table->string('price');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
