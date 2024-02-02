@@ -30,9 +30,9 @@ class ServiceController extends Controller
 
     public function create()
     {
-        $modifyServicsFromDB = categorie::all();
+        $categoryFromDB = categorie::all();
 
-        return view('create', ['post' => $modifyServicsFromDB]);
+        return view('create', ['post' => $categoryFromDB]);
     }
 
     public function show($id)

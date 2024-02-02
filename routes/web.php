@@ -16,30 +16,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', [ServiceController::class,'home'])->name('home');
-// ->middleware('auth')
+Route::get('/index', [ServiceController::class, 'home'])->name('home');
 
-Route::get('/service/{post}',[ServiceController::class,'show'])->name('service.show');
+
+Route::get('/service/{post}', [ServiceController::class, 'show'])->name('service.show');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/services/create', [ServiceController::class, 'create'])->name('create');
     Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
-    Route::get('/service/create',[ServiceController::class,'create'])->name('service.create');
-    Route::get('/service/{post}/update',[ServiceController::class,'update'])->name('service.update');
-    Route::post('/service',[ServiceController::class,'store'])->name('service.store');
-    Route::delete('/service/{post}',[ServiceController::class,'delete'])->name('service.destroy');
-    Route::put('/service/{post}',[ServiceController::class,'modify'])->name('service.modify');
-
+    Route::get('/service/{post}/update', [ServiceController::class, 'update'])->name('service.update');
+    Route::post('/service', [ServiceController::class, 'store'])->name('service.store');
+    Route::delete('/service/{post}', [ServiceController::class, 'delete'])->name('service.destroy');
+    Route::put('/service/{post}', [ServiceController::class, 'modify'])->name('service.modify');
 });
 
 
-    Route::get('/index', [ServiceController::class,'home'])->name('home')->middleware('guest');
+Route::get('/index', [ServiceController::class, 'home'])->name('home');
 
 
 
-Route::get('/register',[userController::class,'create'])->name('register.create');
-Route::post('/register',[userController::class,'store'])->name('register.store');
-Route::get('/login',[userController::class,'index'])->name('login.create');
-Route::post('/login',[userController::class,'login'])->name('login.store');
+Route::get('/register', [userController::class, 'create'])->name('register.create');
+Route::post('/register', [userController::class, 'store'])->name('register.store');
+Route::get('/login', [userController::class, 'index'])->name('login.create');
+Route::post('/login', [userController::class, 'login'])->name('login.store');
 Route::get('/logout', [userController::class, 'logout'])->name('logout');
-
-
