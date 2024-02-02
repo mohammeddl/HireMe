@@ -51,31 +51,47 @@ class ServiceController extends Controller
         return  view('modify', ['post' => $modifyServicsFromDB, 'categories' => $modifyCategoryFromDB]);
     }
 
-
     public function modify($id)
     {
+        // Validate the request data
+        request()->validate([
+            'img' => 'image',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category' => [
+                'required',
+            ],
+        ]);
 
-        $img = request()->img;
+        if (request()->hasFile('img')) {
+            $image = request()->file('img');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+        } else {
+            $imageName = 'service.png';
+        }
+
+
         $title = request()->title;
         $description = request()->description;
         $category = request()->category;
 
-        $modifyServicsFromDB = Service::findOrFail($id);
-        $modifyServicsFromDB->update([
-            'img' => $img,
+        $modifyServiceFromDB = Service::findOrFail($id);
+        $modifyServiceFromDB->update([
+            'img' => $imageName,
             'title' => $title,
             'description' => $description,
-            'category_id' => $category
+            'category_id' => $category,
         ]);
 
-        return to_route('service.show', $id)->with('success', 'your service is updated');
+        return redirect()->route('service.show', $id)->with('success', 'Your service is updated');
     }
 
     public function delete($id)
     {
-        $ServicsFromDB = Service::findOrFail($id);
-        $ServicsFromDB->delete();
-        return to_route('service.index')->with('success', 'your service is destroy');
+        $serviceFromDB = Service::findOrFail($id);
+        $serviceFromDB->delete();
+        return redirect()->route('service.index')->with('success', 'Your service has been deleted successfully.');
     }
 
 
@@ -96,12 +112,10 @@ class ServiceController extends Controller
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
         } else {
-            $imageName = null;
+            $imageName = 'service.png';
         }
 
         $userId = Auth::id();
-
-
         $service = new Service;
         $service->img =  $imageName;
         $service->title = $request->input('title');

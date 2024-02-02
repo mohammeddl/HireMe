@@ -15,7 +15,7 @@
 
 {{-- service card --}}
 <section class="bg-white dark:bg-gray-900">
-    <div class="container px-6 py-10 mx-auto">
+    <div class="container px-12 py-10 mx-auto">
         <div class="flex items-center justify-between">
             <h2 class="w-full m-0 font-sans text-4xl font-black leading-loose tracking-wide text-center text-gray-700 border-0 border-gray-200 sm:text-5xl">
                 Last Services
@@ -30,27 +30,32 @@
                 <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ asset('images/' . $service->img) }}" alt="">
 
                 <div class="mt-8">
-
-                    <span class="text-blue-500 uppercase">{{$service->categorie->categoryName}}</span>
-
+                    <div class="flex justify-between">
+                    <div class=" text-1xl font-black text-gray-700 border-0 border-gray-200 sm:text-2xl">{{$service->categorie->categoryName}}</div>
+                    <div class="  flex px-3 py-2 ml-8  text-xs font-medium tracking-wide uppercase bg-gray-800 rounded-full text-green-50">
+                        <svg class="w-4 h-4 mr-1 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>Most Popular
+                    </div>
+                    </div>
                     <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
                         {{$service->titel}}
                     </h1>
 
                     <p class="mt-2 text-gray-500 dark:text-gray-400">
-                        {{$service->description}}
+                        {{ Str::limit($service->description, 20) }}
                     </p>
 
                     <div class="flex items-center justify-between mt-4">
                         <div>
                             <a href="#" class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
-                                John snow
+                                {{$service->user->name}}
                             </a>
 
                             <p class="text-sm text-gray-500 dark:text-gray-400">{{$service->date}}</p>
                         </div>
 
-                        <a href="{{route('service.show',$service->id)}}" class="inline-block text-blue-500 underline hover:text-blue-400">Contact Us</a>
+                        <a href="{{route('service.show',$service->id)}}" class=" px-3 py-2 ml-8  text-xs font-medium tracking-wide uppercase bg-[#c7bf91] rounded-full text-green-50 hover:underline hover:text-gray-800">Contact Us</a>
                     </div>
 
                 </div>
@@ -62,7 +67,7 @@
 
 {{-- card --}}
 <section class=" relative w-full font-sans leading-6 text-gray-700 bg-white border-0 border-gray-200 border-solid">
-    <div class="box-border flex flex-col items-center px-8  mx-auto leading-6 border-solid max-w-7xl xl:px-16 md:items-stretch md:justify-center md:py-24">
+    <div class="box-border flex flex-col items-center px-8  mx-auto leading-6 border-solid max-w-7xl xl:px-16 md:items-stretch md:justify-center md:py-12">
         <div class="relative pb-10">
 
             <h2 class="w-full m-0 font-sans text-4xl font-black leading-loose tracking-wide text-center text-gray-700 border-0 border-gray-200 sm:text-5xl">
