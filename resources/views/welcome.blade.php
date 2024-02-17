@@ -14,8 +14,8 @@
 </section>
 
 {{-- service card --}}
-<section class="bg-white dark:bg-gray-900">
-    <div class="container px-12 py-10 mx-auto">
+<section class=" dark:bg-gray-900">
+    <div class="container px-12 py-10 mx-auto bg-gray-100">
         <div class="flex items-center justify-between">
             <h2 class="w-full m-0 font-sans text-4xl font-black leading-loose tracking-wide text-center text-gray-700 border-0 border-gray-200 sm:text-5xl">
                 Last Services
@@ -24,9 +24,9 @@
 
         <hr class="my-8 border-gray-200 dark:border-gray-700">
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div class="grid grid-cols-1  gap-8 md:grid-cols-2 xl:grid-cols-3">
             @foreach($lastServices as $service)
-            <div>
+            <div class="">
                 <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ asset('images/' . $service->img) }}" alt="">
 
                 <div class="mt-8">

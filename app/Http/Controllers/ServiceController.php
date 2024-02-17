@@ -21,8 +21,6 @@ class ServiceController extends Controller
     public function index()
     {
         $userId = Auth::id();
-
-
         $servicesFromDB = Service::where('user_id', $userId)->get();
 
         return view('service', ['service' => $servicesFromDB]);
@@ -53,7 +51,7 @@ class ServiceController extends Controller
 
     public function modify($id)
     {
-        // Validate the request data
+
         request()->validate([
             'img' => 'image',
             'title' => 'required|string|max:255',
@@ -78,12 +76,11 @@ class ServiceController extends Controller
 
         $modifyServiceFromDB = Service::findOrFail($id);
         $modifyServiceFromDB->update([
-            'img' => $imageName,
+            'img' => request()->hasFile('image') ? $imageName : $modifyServiceFromDB->image,
             'title' => $title,
             'description' => $description,
             'category_id' => $category,
         ]);
-
         return redirect()->route('service.show', $id)->with('success', 'Your service is updated');
     }
 

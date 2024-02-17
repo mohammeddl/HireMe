@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', [ServiceController::class, 'home'])->name('home');
+Route::get('/', [ServiceController::class, 'home'])->name('home');
 
 
 Route::get('/service/{post}', [ServiceController::class, 'show'])->name('service.show');
@@ -29,11 +29,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/service/{post}', [ServiceController::class, 'delete'])->name('service.destroy');
     Route::put('/service/{post}', [ServiceController::class, 'modify'])->name('service.modify');
 });
-
-
-Route::get('/index', [ServiceController::class, 'home'])->name('home');
-
-
 
 Route::get('/register', [userController::class, 'create'])->name('register.create');
 Route::post('/register', [userController::class, 'store'])->name('register.store');
